@@ -32,6 +32,10 @@
 body {
     background-color: #FFE74C;
     font-size: 2.5em;
+
+    font-family: museo-sans-rounded, sans-serif;
+font-style: normal;
+font-weight: 800;
 }
 
 #start-button {
@@ -45,18 +49,18 @@ body {
     justify-content: center;
     align-items: center;
 
-    box-shadow: 0px 6px 0px 0px rgb(96, 9, 9);
+    box-shadow: 0px 6px 0px 0px rgb(210, 59, 59);
 
     background-color: #FF5964;
     color: white;
 }
 
 #start-button:hover {
-    background-color: rgb(222, 79, 89);
+    background-color: rgb(230, 79, 89);
 }
 
 #start-button:active {
-    box-shadow: 0px 3px 0px 0px rgb(96, 9, 9);
+    box-shadow: 0px 3px 0px 0px rgb(210, 59, 59);
     transform: translateY(3px);
 }
 
@@ -71,9 +75,26 @@ body {
 #shuffle-button {
     margin: 0 auto;
     margin-top: 30px;
-    width: 300px;
-    text-align: center;
+    width: 90px;
+    height: 40px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: .5em;
+    
+    color: white;
+    background-color: rgb(11, 179, 123);
+    box-shadow: 0px 6px 0px 0px rgb(7, 123, 84);
+}
+
+#shuffle-button:hover {
+    background-color: rgb(10, 164, 113);
+}
+
+#shuffle-button:active {
+    box-shadow: 0px 3px 0px 0px rgb(7, 123, 84);
+    transform: translateY(3px);
 }
 
 .noselect {

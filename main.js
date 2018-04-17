@@ -1,5 +1,5 @@
 // Note names
-var noteList = "A,AS,B,C,CS,D,DS,E,F,FS,G,GS".split(',');
+var noteList = "A2,AS2,B2,C2,CS2,D2,DS2,E3,F2,FS2,G2,GS2".split(',');
 
 var IS_RUNNING = false;
 var NOTE_INDEX = 0;
@@ -42,17 +42,16 @@ function playNote(noteIndex) {
     $("#note-" + noteName).addClass("note-name-selected");
     $("#note-" + prevNoteName).removeClass("note-name-selected");
 
-    SYNTH.triggerAttackRelease(fixNoteName(noteName) + "3", "8n");
+    SYNTH.triggerAttackRelease(getFixedNoteName(noteName), "8n");
     NOTE_INDEX++;
 }
 
-function fixNoteName(noteName) { 
-    console.log(noteName);
-    if (noteName.substr(noteName.length - 1) === "S") {
-        return noteName.slice(0,1) + "#";
-    } else {
-        return noteName;
-    }
+function getDisplayNoteName(noteName) {
+    return getFixedNoteName(noteName).substring(0, noteName.length - 1);
+}
+
+function getFixedNoteName(noteName) {
+    return noteName.replace("S", "#");
 }
 
 function toggleExercise() {
@@ -84,17 +83,19 @@ function stopExcercise() {
 
 function makeNote(noteName) {
     const parent = $("<div>", {id: "note-" + noteName, "class": "note-name noselect"});
-    parent.append("<p>" + fixNoteName(noteName) + "</p>");
+    parent.append("<p>" + getDisplayNoteName(noteName) + "</p>");
     return parent;
 }
 
 function makeNoteGrid(noteStrings) {
-    const noteGridElement = $("#note-grid");
+    var noteGridElement = $("#note-grid");
     noteGridElement.empty();
-    for (let i = 0; i < noteStrings.length; i++) {
-        const noteString = noteStrings[i];
-        
-        noteGridElement.append(makeNote(noteString));
+    for (let col = 0; col < 4; col++) {
+        var column = $("<div>", {"class": "col"});
+        for (let row = 0; row < 3; row++) {
+            column.append(makeNote(noteStrings[row*4 + col]))
+        }
+        noteGridElement.append(column);
     }
 }
 
