@@ -1,0 +1,87 @@
+#note-grid {
+    width: 800px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+
+    background-color: #38618C;
+    border-radius: 5px;
+}
+
+.note-name {
+    width: 150px;
+    height: 150px;
+    margin: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #35A7FF;
+    color: #FFFFFF;
+}
+
+.note-name-selected {
+    background-color: #FF5964;
+}
+
+body {
+    background-color: #FFE74C;
+    font-size: 2.5em;
+}
+
+#start-button {
+    width: 800px;
+    margin: 0 auto;
+    width: 300px;
+    height: 150px;
+
+    margin-top: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0px 6px 0px 0px rgb(96, 9, 9);
+
+    background-color: #FF5964;
+    color: white;
+}
+
+#start-button:hover {
+    background-color: rgb(222, 79, 89);
+}
+
+#start-button:active {
+    box-shadow: 0px 3px 0px 0px rgb(96, 9, 9);
+    transform: translateY(3px);
+}
+
+#bpm-select {
+    margin: 0 auto;
+    width: 300px;
+    font-size: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#shuffle-button {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 300px;
+    text-align: center;
+    font-size: .5em;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
