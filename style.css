@@ -3,7 +3,6 @@
     width: 80%;
     max-width: 800px;
     min-width: 390px;
-
     padding: 10px;
 
     background-color: #38618C;
@@ -19,9 +18,6 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
-    .selected { 
-        color: white;
-    }
 }
 
 .string.selected {
@@ -38,11 +34,9 @@
     display: -webkit-flex;
     display: flex;
     -webkit-flex-flow: row;
+    flex-flow: row;
     justify-content: space-around;
     align-items: center;
-
-    /* line-height:10px;
-    margin-bottom: 1px; */
 }
 
 .note-name {
@@ -79,7 +73,7 @@ body {
     font-style: normal;
     font-weight: 800;
 
-    transform: scale(0.6);
+    /* transform: scale(0.7); */
     /* transform-origin: 0 0; */
 }
 

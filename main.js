@@ -40,7 +40,13 @@ $('document').ready(function () {
     $("#bpm-input").change(function () {
         changeBPM(parseInt($("#bpm-input").val()));
     });
+
+    footerAlign();
 });
+
+$( window ).resize(function() {
+    footerAlign();
+  });
 
 function selectString(S) {
     stopExcercise();
@@ -154,3 +160,11 @@ function shuffle(array) {
 function jq(myid) {
     return myid.replace(/(:|\.|\[|\]|,|=|@)/g, "\\$1");
 }
+
+function footerAlign() {
+    $('footer').css('display', 'block');
+    $('footer').css('height', 'auto');
+    var footerHeight = $('footer').outerHeight();
+    $('body').css('padding-bottom', footerHeight);
+    $('footer').css('height', footerHeight);
+  }
