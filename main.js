@@ -1,5 +1,13 @@
-// Note names
-var noteList = "A2,AS2,B2,C2,CS2,D2,DS2,E3,F2,FS2,G2,GS2".split(',');
+var noteMap = {
+    "E": "F2,FS2,G2,GS2,A2,AS2,B2,C2,CS2,D2,DS2,E3".split(','),
+    "A": "AS2,B2,C2,CS2,D2,DS2,E3,F3,FS3,G3,GS3,A3".split(','),
+    "D": "DS2,E3,F3,FS3,G3,GS3,A3,AS3,B3,C3,CS3,D4".split(','),
+    "G": "GS3,A3,AS3,B3,C3,CS3,D4,DS4,E4,F4,FS4,G4".split(','),
+    "B": "C4,CS4,D4,DS4,E5,F5,FS5,G5,GS5,A5,AS5,B5".split(','),
+    "EHi": "F5,FS5,G5,GS5,A5,AS5,B5,C5,CS5,D5,DS5,E6".split(',')
+};
+
+var SELECTED_STRING = "E";
 
 var IS_RUNNING = false;
 var NOTE_INDEX = 0;
@@ -8,36 +16,57 @@ var NOTE_INDEX = 0;
 var SYNTH = new Tone.Synth().toMaster();
 
 $('document').ready(function () {
-    makeNoteGrid(noteList);
-    $("#bpm-input").val(60);
+    makeNoteGrid(noteMap[SELECTED_STRING]);
 
+    selectString(SELECTED_STRING);
+
+    $(".string").on('click', function () {
+        selectString($(this).text());
+    });
+
+    $("#bpm-input").val(60);
     changeBPM(60);
-    Tone.Transport.scheduleRepeat(function(time){
+
+    Tone.Transport.scheduleRepeat(function (time) {
         playNote(NOTE_INDEX);
     }, "4n");
 
     $("#start-button").mouseup(toggleExercise);
-    $("#shuffle-button").mouseup(function() {
+
+    $("#shuffle-button").mouseup(function () {
         shuffleNotes();
     });
-    $("#bpm-input").change(function() {
+
+    $("#bpm-input").change(function () {
         changeBPM(parseInt($("#bpm-input").val()));
     });
 });
+
+function selectString(S) {
+    stopExcercise();
+    SELECTED_STRING = S;
+    $(".string").removeClass('selected');
+    $("#" + jq("str-" + S)).addClass('selected');
+    makeNoteGrid(noteMap[SELECTED_STRING]);
+    shuffleNotes();
+}
 
 function changeBPM(newValue) {
     Tone.Transport.bpm.rampTo(newValue, 2);
 }
 
 function shuffleNotes() {
+    for (let i = 0; i < Object.keys(noteMap).length; i++) {
+        S = Object.keys(noteMap)[i];
+        noteMap[S] = shuffle(noteMap[S]);
+    }
     stopExcercise();
-    noteList = shuffle(noteList);
-    makeNoteGrid(noteList);
+    makeNoteGrid(noteMap[SELECTED_STRING]);
 }
 
 function playNote(noteIndex) {
-    const noteName = noteList[NOTE_INDEX % noteList.length];
-    const prevNoteName = noteList[wrapIndex(NOTE_INDEX - 1, noteList.length)];
+    const noteName = noteMap[SELECTED_STRING][NOTE_INDEX % noteMap[SELECTED_STRING].length];
+    const prevNoteName = noteMap[SELECTED_STRING][wrapIndex(NOTE_INDEX - 1, noteMap[SELECTED_STRING].length)];
 
     $("#note-" + noteName).addClass("note-name-selected");
     $("#note-" + prevNoteName).removeClass("note-name-selected");
@@ -74,15 +103,15 @@ function stopExcercise() {
     $("#start-button").text("Start");
     NOTE_INDEX = 0;
 
-    for (let i = 0; i < noteList.length; i++) {
-        const noteName = noteList[i];
+    for (let i = 0; i < noteMap[SELECTED_STRING].length; i++) {
+        const noteName = noteMap[SELECTED_STRING][i];
         $("#note-" + noteName).removeClass("note-name-selected");
     }
     IS_RUNNING = false;
 }
 
 function makeNote(noteName) {
-    const parent = $("<div>", {id: "note-" + noteName, "class": "note-name noselect"});
+    const parent = $("<div>", { id: "note-" + noteName, "class": "note-name noselect" });
     parent.append("<p>" + getDisplayNoteName(noteName) + "</p>");
     return parent;
 }
@@ -90,34 +119,38 @@ function makeNote(noteName) {
 function makeNoteGrid(noteStrings) {
     var noteGridElement = $("#note-grid");
     noteGridElement.empty();
-    for (let col = 0; col < 4; col++) {
-        var column = $("<div>", {"class": "col"});
-        for (let row = 0; row < 3; row++) {
-            column.append(makeNote(noteStrings[row*4 + col]))
+    for (let col = 0; col < 3; col++) {
+        var rowElement = $("<div>", { "class": "row" });
+        for (let row = 0; row < 4; row++) {
+            rowElement.append(makeNote(noteStrings[col * 4 + row]))
         }
-        noteGridElement.append(column);
+        noteGridElement.append(rowElement);
     }
 }
 
 function wrapIndex(i, i_max) {
     return ((i % i_max) + i_max) % i_max;
- }
+}
 
- function shuffle(array) {
+function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-  
+
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
-  
+
     return array;
-  }
+}
+
+function jq(myid) {
+    return myid.replace(/(:|\.|\[|\]|,|=|@)/g, "\\$1");
+}

@@ -1,28 +1,70 @@
 #note-grid {
-    width: 800px;
     margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
+    min-width: 390px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-items: center;
+    padding: 10px;
 
     background-color: #38618C;
     border-radius: 5px;
 }
 
-.note-name {
-    width: 150px;
-    height: 150px;
-    margin: 25px;
-
+#string-select {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 800px;
+    min-width: 390px;
+    text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    .selected { 
+        color: white;
+    }
+}
+
+.string.selected {
+    color: white;
+}
+
+.row {
+    padding-bottom: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    justify-content: space-around;
     align-items: center;
 
+    /* line-height:10px;
+    margin-bottom: 1px; */
+}
+
+.note-name {
+    /* background: tomato; */
+    margin: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    flex: 1 0 0px;
+    min-width: 1em;
+    align-items: center;
+    justify-content: center;
     background-color: #35A7FF;
     color: #FFFFFF;
+}
+
+.note-name:before {
+    content: "";
+	display: block;
+	padding-top: 100%;
+    float: left;
 }
 
 .note-name-selected {
@@ -34,15 +76,18 @@ body {
     font-size: 2.5em;
 
     font-family: museo-sans-rounded, sans-serif;
-font-style: normal;
-font-weight: 800;
+    font-style: normal;
+    font-weight: 800;
+
+    transform: scale(0.6);
+    /* transform-origin: 0 0; */
 }
 
 #start-button {
     width: 800px;
     margin: 0 auto;
     width: 300px;
-    height: 150px;
+    height: 100px;
 
     margin-top: 50px;
     display:flex;
@@ -105,4 +150,15 @@ font-weight: 800;
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
+  }
+
+  #bpm-input {
+      width: 50px;
+      border: 2px solid #CCCCCC;
+      font-size: 2.5em;
+      margin-right: 10px;
+  }
+
+  #bpm-select>span {
+      font-size: 2.5em;
   }
