@@ -1,14 +1,3 @@
-#note-grid {
-    margin: 0 auto;
-    width: 80%;
-    max-width: 800px;
-    min-width: 390px;
-    padding: 10px;
-
-    background-color: #38618C;
-    border-radius: 5px;
-}
-
 #string-select {
     margin: 0 auto;
     width: 80%;
@@ -24,16 +13,17 @@
     color: white;
 }
 
+#note-grid {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 10px;
+    background-color: #38618C;
+    border-radius: 5px;
+}
+
 .row {
-    padding-bottom: 0;
-    margin: 0;
     list-style: none;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-flow: row;
     flex-flow: row;
     justify-content: space-around;
     align-items: center;
@@ -147,7 +137,7 @@ body {
   }
 
   #bpm-input {
-      width: 50px;
+      width: 75px;
       border: 2px solid #CCCCCC;
       font-size: 2.5em;
       margin-right: 10px;
@@ -155,4 +145,10 @@ body {
 
   #bpm-select>span {
       font-size: 2.5em;
+  }
+
+  * {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
   }
