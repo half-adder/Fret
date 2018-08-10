@@ -145,19 +145,19 @@ body {
                                     supported by Chrome and Opera */
   }
 
-  #bpm-input {
-      width: 75px;
-      border: 2px solid #CCCCCC;
-      font-size: 2.5em;
-      margin-right: 10px;
-  }
+#bpm-input {
+  width: 75px;
+  border: 2px solid #CCCCCC;
+  font-size: 2.5em;
+  margin-right: 10px;
+}
 
-  #bpm-select>span {
-      font-size: 2.5em;
-  }
+#bpm-select>span {
+  font-size: 2.5em;
+}
 
-  * {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-  }
+* {
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
