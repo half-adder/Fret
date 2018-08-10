@@ -11,6 +11,7 @@ var SELECTED_STRING = "E";
 
 var IS_RUNNING = false;
 var NOTE_INDEX = 0;
+var USE_FLATS = false;
 
 //create a synth and connect it to the master output (your speakers)
 var SYNTH = new Tone.Synth().toMaster();
@@ -27,6 +28,8 @@ $('document').ready(function () {
     $("#bpm-input").val(60);
     changeBPM(60);
 
+    $("#flats-input").prop('checked', false);
+
     Tone.Transport.scheduleRepeat(function (time) {
         playNote(NOTE_INDEX);
     }, "4n");
@@ -39,6 +42,11 @@ $('document').ready(function () {
 
     $("#bpm-input").change(function () {
         changeBPM(parseInt($("#bpm-input").val()));
+    });
+
+    $("#flats-input").change(function () {
+        USE_FLATS = $("#flats-input").prop('checked');
+        makeNoteGrid(noteMap[SELECTED_STRING]);
     });
 
     footerAlign();
@@ -90,7 +98,18 @@ function playNote(noteIndex) {
 }
 
 function getDisplayNoteName(noteName) {
-    return getFixedNoteName(noteName).substring(0, noteName.length - 1);
+    displayName = getFixedNoteName(noteName).substring(0, noteName.length - 1);
+    if (USE_FLATS && displayName.length > 1){
+        note = displayName.substring(0, 1).charCodeAt();
+        note = String.fromCharCode(note + 1);
+        if (note === "H")
+            note = "A"
+        displayName = note + "♭";
+    } else {
+        displayName = displayName.replace("#", "♯")
+    }
+
+    return displayName;
 }
 
 function getFixedNoteName(noteName) {
@@ -175,4 +194,4 @@ function footerAlign() {
     var footerHeight = $('footer').outerHeight();
     $('body').css('padding-bottom', footerHeight);
     $('footer').css('height', footerHeight);
-  }
+}

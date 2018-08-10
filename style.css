@@ -38,6 +38,7 @@
     text-align: center;
     flex: 1 0 0px;
     min-width: 1em;
+    line-height: 1;
     align-items: center;
     justify-content: center;
     background-color: #35A7FF;
@@ -73,7 +74,7 @@ body {
     width: 300px;
     height: 100px;
 
-    margin-top: 50px;
+    margin-top: 20px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -101,17 +102,25 @@ body {
     margin-top: 20px;
 }
 
+#flats-checkbox {
+    margin: 0 auto;
+    width: 300px;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+}
+
 #shuffle-button {
     margin: 0 auto;
     margin-top: 30px;
     width: 90px;
     height: 40px;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: .5em;
-    
+
     color: white;
     background-color: rgb(11, 179, 123);
     box-shadow: 0px 6px 0px 0px rgb(7, 123, 84);
