@@ -1,3 +1,7 @@
+
+var Tone = require("Tone");
+var $ = require('jquery');
+
 var noteMap = {
     "E": "F2,FS2,G2,GS2,A2,AS2,B2,C3,CS3,D3,DS3,E3".split(','),
     "A": "AS2,B2,C3,CS3,D3,DS3,E3,F3,FS3,G3,GS3,A3".split(','),
