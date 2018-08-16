@@ -30,10 +30,11 @@
         <div id="bpm-select">
             <input type="number" id="bpm-input"><span>BPM</span>
         </div>
-        <div id="start-button" class="noselect">
-            Start
+        <input type="range" min="10" max="300" value="60" class="slider" id="bpm-slider">
+        <div id="button-container">
+            <div class="button noselect" id="start-button" >Start</div>
+            <div class="button noselect" id="shuffle-button">Shuffle</div>
         </div>
-        <div id="shuffle-button" class="noselect">Shuffle</div>
     </div>
     <footer>
         <p>Made by <a href="http://www.seanjohnsen.com">me</a></p>

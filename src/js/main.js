@@ -41,16 +41,16 @@ $('document').ready(function () {
         shuffleNotes();
     });
 
+    var slider = document.getElementById("bpm-slider");
+    slider.oninput = function () {
+        changeBPM(slider.value);
+    }
+
     $("#bpm-input").change(function () {
         changeBPM(parseInt($("#bpm-input").val()));
     });
 
-    footerAlign();
 });
-
-$( window ).resize(function() {
-    footerAlign();
-  });
 
 function selectString(S) {
     stopExcercise();
@@ -69,6 +69,9 @@ function changeBPM(newValue) {
     newValue = Math.min(newValue, maxBPM);
 
     $("#bpm-input").val(newValue);
+    var slider = document.getElementById("bpm-slider");
+    slider.value = newValue;
+
 
     Tone.Transport.bpm.rampTo(newValue, 2);
 }
@@ -140,13 +143,6 @@ function makeNoteGrid(noteStrings) {
     for (let i = 0; i < noteStrings.length; i++) {
         noteGridElement.append(makeNote(noteStrings[i]));
     }
-    // for (let col = 0; col < 3; col++) {
-    //     var rowElement = $("<div>", { "class": "row" });
-    //     for (let row = 0; row < 4; row++) {
-    //         rowElement.append(makeNote(noteStrings[col * 4 + row]))
-    //     }
-    //     noteGridElement.append(rowElement);
-    // }
 }
 
 function wrapIndex(i, i_max) {
