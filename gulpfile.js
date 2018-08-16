@@ -73,9 +73,9 @@ gulp.task('serve', ['inject'], function () {
         }
     });
 
-    // gulp.watch(paths.src, ['inject']);
     gulp.watch(paths.srcCSS, ['css']);
     gulp.watch(paths.srcJS, ['js']);
+    gulp.watch(paths.srcHTML, ['inject']);
 });
 
 

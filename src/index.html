@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,35 +11,34 @@
     <!-- inject:css -->
     <!-- endinject -->
 </head>
+
 <body>
-    <div id="string-select" class="noselect">
-        <span class="string" id="str-E">E</span>
-        <span class="divider">|</span>
-
-        <span class="string" id="str-A">A</span>
-        <span class="divider">|</span>
-
-        <span class="string" id="str-D">D</span>
-        <span class="divider">|</span>
-
-        <span class="string" id="str-G">G</span>
-        <span class="divider">|</span>
-
-        <span class="string" id="str-B">B</span>
-        <span class="divider">|</span>
-
-        <span class="string" id="str-EHi">EHi</span>
-
+    <div class="content">
+        <div id="string-select" class="noselect">
+            <span class="string" id="str-E">E</span>
+            <span class="divider">|</span>
+            <span class="string" id="str-A">A</span>
+            <span class="divider">|</span>
+            <span class="string" id="str-D">D</span>
+            <span class="divider">|</span>
+            <span class="string" id="str-G">G</span>
+            <span class="divider">|</span>
+            <span class="string" id="str-B">B</span>
+            <span class="divider">|</span>
+            <span class="string" id="str-EHi">EHi</span>
+        </div>
+        <div id="note-grid"></div>
+        <div id="bpm-select">
+            <input type="number" id="bpm-input"><span>BPM</span>
+        </div>
+        <div id="start-button" class="noselect">
+            Start
+        </div>
+        <div id="shuffle-button" class="noselect">Shuffle</div>
     </div>
-    <div id="note-grid"></div>
-    <div id="bpm-select">
-        <input type="number" id="bpm-input"><span>BPM</span>
-    </div>
-    <div id="start-button" class="noselect">
-        Start
-    </div>
-    <div id="shuffle-button" class="noselect" >Shuffle</div>
-
+    <footer>
+        <p>Made by <a href="http://www.seanjohnsen.com">me</a></p>
+    </footer>
     <!-- inject:js -->
     <!-- endinject -->
 </body>

@@ -62,8 +62,8 @@ function selectString(S) {
 }
 
 function changeBPM(newValue) {
-    minBPM = 1;
-    maxBPM = 500;
+    let minBPM = 1;
+    let maxBPM = 500;
 
     newValue = Math.max(newValue, minBPM);
     newValue = Math.min(newValue, maxBPM);
@@ -75,7 +75,7 @@ function changeBPM(newValue) {
 
 function shuffleNotes() {
     for (let i = 0; i < Object.keys(noteMap).length; i++) {
-        S = Object.keys(noteMap)[i];
+        var S = Object.keys(noteMap)[i];
         noteMap[S] = shuffle(noteMap[S]);
     }
     stopExcercise();
@@ -137,13 +137,16 @@ function makeNote(noteName) {
 function makeNoteGrid(noteStrings) {
     var noteGridElement = $("#note-grid");
     noteGridElement.empty();
-    for (let col = 0; col < 3; col++) {
-        var rowElement = $("<div>", { "class": "row" });
-        for (let row = 0; row < 4; row++) {
-            rowElement.append(makeNote(noteStrings[col * 4 + row]))
-        }
-        noteGridElement.append(rowElement);
+    for (let i = 0; i < noteStrings.length; i++) {
+        noteGridElement.append(makeNote(noteStrings[i]));
     }
+    // for (let col = 0; col < 3; col++) {
+    //     var rowElement = $("<div>", { "class": "row" });
+    //     for (let row = 0; row < 4; row++) {
+    //         rowElement.append(makeNote(noteStrings[col * 4 + row]))
+    //     }
+    //     noteGridElement.append(rowElement);
+    // }
 }
 
 function wrapIndex(i, i_max) {
