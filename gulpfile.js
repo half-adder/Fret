@@ -19,11 +19,6 @@ let paths = {
     srcCSS: 'src/**/*.scss',
     srcJS: 'src/js/main.js',
 
-    tmp: 'tmp',
-    tmpIndex: 'tmp/index.html',
-    tmpCSS: 'tmp/**/*.css',
-    tmpJS: 'tmp/js/bundle.js',
-
     dist: 'dist',
     distIndex: 'dist/index.html',
     distCSS: 'dist/**/*.css',
@@ -32,7 +27,7 @@ let paths = {
 
 gulp.task('html', function () {
     return gulp.src(paths.srcHTML)
-        .pipe(gulp.dest(paths.tmp))
+        .pipe(gulp.dest(paths.dist))
         .pipe(browserSync.stream());
 });
 
@@ -40,7 +35,7 @@ gulp.task('css', function () {
     gulp.src(paths.srcCSS)
         .pipe(sass({ style: 'expanded' }))
         .on('error', gutil.log)
-        .pipe(gulp.dest(paths.tmp))
+        .pipe(gulp.dest(paths.dist))
         .pipe(browserSync.stream());
 });
 
@@ -50,26 +45,26 @@ gulp.task('js', function () {
         .pipe(source('js/bundle.js'))
         .pipe(buffer())
         .pipe(babel())
-        .pipe(gulp.dest(paths.tmp))
+        .pipe(gulp.dest(paths.dist))
         .pipe(browserSync.stream());
 });
 
 gulp.task('copy', ['html', 'css', 'js']);
 
 gulp.task('inject', ['copy'], function () {
-    var css = gulp.src(paths.tmpCSS);
-    var js = gulp.src(paths.tmpJS);
-    return gulp.src(paths.tmpIndex)
+    var css = gulp.src(paths.distCSS);
+    var js = gulp.src(paths.distJS);
+    return gulp.src(paths.distIndex)
         .pipe(inject(css, { relative: true }))
         .pipe(inject(js, { relative: true }))
-        .pipe(gulp.dest(paths.tmp))
+        .pipe(gulp.dest(paths.dist))
         .pipe(browserSync.stream());
 });
 
 gulp.task('serve', ['inject'], function () {
     browserSync.init({
         server: {
-            baseDir: "./tmp/"
+            baseDir: "./dist/"
         }
     });
 
