@@ -73,6 +73,4 @@ gulp.task('serve', ['inject'], function () {
     gulp.watch(paths.srcHTML, ['inject']);
 });
 
-
-
 gulp.task('default', ['html', 'serve']);
